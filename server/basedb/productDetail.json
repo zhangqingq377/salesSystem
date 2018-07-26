@@ -1,0 +1,310 @@
+{ 
+    "_id" : ObjectId("5b556ff5893c434268f39fa3"), 
+    "id" : NumberLong(1), 
+    "brand" : "1", 
+    "name" : "浓原味", 
+    "brandId" : "5b556bc7893c434268f39f75", 
+    "stock" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5b557006893c434268f39fa4"), 
+    "id" : NumberLong(2), 
+    "brand" : "1", 
+    "name" : "淡原味", 
+    "brandId" : "5b556bc7893c434268f39f75", 
+    "stock" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5b55701a893c434268f39fa5"), 
+    "id" : NumberLong(3), 
+    "brand" : "1", 
+    "name" : "浓薄荷", 
+    "brandId" : "5b556bc7893c434268f39f75", 
+    "stock" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5b557027893c434268f39fa6"), 
+    "id" : NumberLong(4), 
+    "brand" : "1", 
+    "name" : "淡薄荷", 
+    "brandId" : "5b556bc7893c434268f39f75", 
+    "stock" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5b557037893c434268f39fa7"), 
+    "id" : NumberLong(5), 
+    "brand" : "1", 
+    "name" : "蓝莓", 
+    "brandId" : "5b556bc7893c434268f39f75", 
+    "stock" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5b557049893c434268f39fa8"), 
+    "id" : NumberLong(5), 
+    "brand" : "1", 
+    "name" : "坚果", 
+    "brandId" : "5b556bc7893c434268f39f75", 
+    "stock" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5b55705b893c434268f39fa9"), 
+    "id" : NumberLong(7), 
+    "brand" : "1", 
+    "name" : "香橙", 
+    "brandId" : "5b556bc7893c434268f39f75", 
+    "stock" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5b557081893c434268f39faa"), 
+    "id" : NumberLong(8), 
+    "brand" : "1", 
+    "name" : "摩卡", 
+    "brandId" : "5b556bc7893c434268f39f75", 
+    "stock" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5b5570a5893c434268f39fab"), 
+    "id" : NumberLong(9), 
+    "brand" : "2", 
+    "name" : "琥珀", 
+    "brandId" : "5b556be1893c434268f39f76", 
+    "stock" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5b5570b9893c434268f39fac"), 
+    "id" : NumberLong(10), 
+    "brand" : "2", 
+    "name" : "冰蓝", 
+    "brandId" : "5b556be1893c434268f39f76"
+}
+{ 
+    "_id" : ObjectId("5b5570c6893c434268f39fad"), 
+    "id" : NumberLong(11), 
+    "brand" : "2", 
+    "name" : "葡萄", 
+    "brandId" : "5b556be1893c434268f39f76"
+}
+{ 
+    "_id" : ObjectId("5b5570d1893c434268f39fae"), 
+    "id" : NumberLong(12), 
+    "brand" : "2", 
+    "name" : "淡原味", 
+    "brandId" : "5b556be1893c434268f39f76"
+}
+{ 
+    "_id" : ObjectId("5b5570e1893c434268f39faf"), 
+    "id" : NumberLong(13), 
+    "brand" : "2", 
+    "name" : "薄荷", 
+    "brandId" : "5b556be1893c434268f39f76"
+}
+{ 
+    "_id" : ObjectId("5b5570ee893c434268f39fb0"), 
+    "id" : NumberLong(14), 
+    "brand" : "2", 
+    "name" : "朗姆酒", 
+    "brandId" : "5b556be1893c434268f39f76"
+}
+{ 
+    "_id" : ObjectId("5b5570fb893c434268f39fb1"), 
+    "id" : NumberLong(15), 
+    "brand" : "2", 
+    "name" : "抹茶", 
+    "brandId" : "5b556be1893c434268f39f76"
+}
+{ 
+    "_id" : ObjectId("5b55711a893c434268f39fb2"), 
+    "id" : NumberLong(16), 
+    "brand" : "3", 
+    "name" : "柠檬", 
+    "brandId" : ObjectId("5b556bf0893c434268f39f77")
+}
+{ 
+    "_id" : ObjectId("5b557123893c434268f39fb3"), 
+    "id" : NumberLong(17), 
+    "brand" : "3", 
+    "name" : "酸奶", 
+    "brandId" : ObjectId("5b556bf0893c434268f39f77")
+}
+{ 
+    "_id" : ObjectId("5b557135893c434268f39fb4"), 
+    "id" : NumberLong(18), 
+    "brand" : "3", 
+    "name" : "杏仁", 
+    "brandId" : ObjectId("5b556bf0893c434268f39f77")
+}
+{ 
+    "_id" : ObjectId("5b55713d893c434268f39fb5"), 
+    "id" : NumberLong(19), 
+    "brand" : "3", 
+    "name" : "哈密瓜", 
+    "brandId" : ObjectId("5b556bf0893c434268f39f77")
+}
+{ 
+    "_id" : ObjectId("5b55714e893c434268f39fb6"), 
+    "id" : NumberLong(20), 
+    "brand" : "4", 
+    "name" : "原味", 
+    "brandId" : ObjectId("5b556bfc893c434268f39f78")
+}
+{ 
+    "_id" : ObjectId("5b557175893c434268f39fb7"), 
+    "id" : NumberLong(21), 
+    "brand" : "4", 
+    "name" : "薄荷", 
+    "brandId" : ObjectId("5b556bfc893c434268f39f78")
+}
+{ 
+    "_id" : ObjectId("5b55717c893c434268f39fb8"), 
+    "id" : NumberLong(22), 
+    "brand" : "4", 
+    "name" : "琥珀", 
+    "brandId" : ObjectId("5b556bfc893c434268f39f78")
+}
+{ 
+    "_id" : ObjectId("5b557186893c434268f39fb9"), 
+    "id" : NumberLong(23), 
+    "brand" : "4", 
+    "name" : "葡萄", 
+    "brandId" : ObjectId("5b556bfc893c434268f39f78")
+}
+{ 
+    "_id" : ObjectId("5b55b07a893c434268f3a052"), 
+    "id" : NumberLong(24), 
+    "brand" : "5", 
+    "name" : "黑色", 
+    "brandId" : ObjectId("5b55ae29893c434268f3a01e")
+}
+{ 
+    "_id" : ObjectId("5b55b081893c434268f3a053"), 
+    "id" : NumberLong(25), 
+    "brand" : "5", 
+    "name" : "白色", 
+    "brandId" : ObjectId("5b55ae29893c434268f3a01e")
+}
+{ 
+    "_id" : ObjectId("5b55b089893c434268f3a054"), 
+    "id" : NumberLong(26), 
+    "brand" : "5", 
+    "name" : "钢铁侠", 
+    "brandId" : ObjectId("5b55ae29893c434268f3a01e")
+}
+{ 
+    "_id" : ObjectId("5b55b08f893c434268f3a055"), 
+    "id" : NumberLong(27), 
+    "brand" : "5", 
+    "name" : "蓝色", 
+    "brandId" : ObjectId("5b55ae29893c434268f3a01e")
+}
+{ 
+    "_id" : ObjectId("5b55b095893c434268f3a056"), 
+    "id" : NumberLong(28), 
+    "brand" : "5", 
+    "name" : "粉色", 
+    "brandId" : ObjectId("5b55ae29893c434268f3a01e")
+}
+{ 
+    "_id" : ObjectId("5b55b09a893c434268f3a057"), 
+    "id" : NumberLong(29), 
+    "brand" : "5", 
+    "name" : "迷彩", 
+    "brandId" : ObjectId("5b55ae29893c434268f3a01e")
+}
+{ 
+    "_id" : ObjectId("5b55b0a1893c434268f3a058"), 
+    "id" : NumberLong(30), 
+    "brand" : "5", 
+    "name" : "法拉利", 
+    "brandId" : ObjectId("5b55ae29893c434268f3a01e")
+}
+{ 
+    "_id" : ObjectId("5b55b0a9893c434268f3a059"), 
+    "id" : NumberLong(31), 
+    "brand" : "6", 
+    "name" : "黑色", 
+    "brandId" : "5b55ae69893c434268f3a023"
+}
+{ 
+    "_id" : ObjectId("5b55b0af893c434268f3a05a"), 
+    "id" : NumberLong(32), 
+    "brand" : "6", 
+    "name" : "白色", 
+    "brandId" : "5b55ae69893c434268f3a023"
+}
+{ 
+    "_id" : ObjectId("5b55b0b8893c434268f3a05b"), 
+    "id" : NumberLong(33), 
+    "brand" : "6", 
+    "name" : "钢铁侠", 
+    "brandId" : "5b55ae69893c434268f3a023"
+}
+{ 
+    "_id" : ObjectId("5b55b0be893c434268f3a05c"), 
+    "id" : NumberLong(34), 
+    "brand" : "6", 
+    "name" : "蓝色", 
+    "brandId" : "5b55ae69893c434268f3a023"
+}
+{ 
+    "_id" : ObjectId("5b55b0c4893c434268f3a05d"), 
+    "id" : NumberLong(35), 
+    "brand" : "6", 
+    "name" : "粉色", 
+    "brandId" : "5b55ae69893c434268f3a023"
+}
+{ 
+    "_id" : ObjectId("5b55b0d3893c434268f3a05e"), 
+    "id" : NumberLong(36), 
+    "brand" : "6", 
+    "name" : "迷彩", 
+    "brandId" : "5b55ae69893c434268f3a023"
+}
+{ 
+    "_id" : ObjectId("5b55b0d9893c434268f3a05f"), 
+    "id" : NumberLong(37), 
+    "brand" : "6", 
+    "name" : "法拉利", 
+    "brandId" : "5b55ae69893c434268f3a023"
+}
+{ 
+    "_id" : ObjectId("5b55b14a893c434268f3a060"), 
+    "id" : NumberLong(38), 
+    "brand" : "7", 
+    "name" : "白色", 
+    "brandId" : "5b55ae97893c434268f3a024"
+}
+{ 
+    "_id" : ObjectId("5b55b14f893c434268f3a061"), 
+    "id" : NumberLong(39), 
+    "brand" : "7", 
+    "name" : "蓝色", 
+    "brandId" : "5b55ae97893c434268f3a024"
+}
+{ 
+    "_id" : ObjectId("5b55b154893c434268f3a062"), 
+    "id" : NumberLong(40), 
+    "brand" : "7", 
+    "name" : "金色", 
+    "brandId" : "5b55ae97893c434268f3a024"
+}
+{ 
+    "_id" : ObjectId("5b55b15a893c434268f3a063"), 
+    "id" : NumberLong(41), 
+    "brand" : "8", 
+    "name" : "白色", 
+    "brandId" : "5b55aea1893c434268f3a025"
+}
+{ 
+    "_id" : ObjectId("5b55b160893c434268f3a064"), 
+    "id" : NumberLong(42), 
+    "brand" : "8", 
+    "name" : "蓝色", 
+    "brandId" : "5b55aea1893c434268f3a025"
+}
+{ 
+    "_id" : ObjectId("5b55b164893c434268f3a065"), 
+    "id" : NumberLong(43), 
+    "brand" : "8", 
+    "name" : "金色", 
+    "brandId" : "5b55aea1893c434268f3a025"
+}

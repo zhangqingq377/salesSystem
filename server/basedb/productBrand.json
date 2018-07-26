@@ -1,0 +1,56 @@
+{ 
+    "_id" : ObjectId("5b556bc7893c434268f39f75"), 
+    "id" : "1", 
+    "name" : "万宝路", 
+    "productId" : "5b556b36893c434268f39f61", 
+    "product" : "2"
+}
+{ 
+    "_id" : ObjectId("5b556be1893c434268f39f76"), 
+    "name" : "韩版heets", 
+    "id" : "2", 
+    "productId" : "5b556b36893c434268f39f61", 
+    "product" : "2"
+}
+{ 
+    "_id" : ObjectId("5b556bf0893c434268f39f77"), 
+    "name" : "韩版fiit", 
+    "id" : "3", 
+    "productId" : "5b556b36893c434268f39f61", 
+    "product" : "2"
+}
+{ 
+    "_id" : ObjectId("5b556bfc893c434268f39f78"), 
+    "name" : "欧版heets", 
+    "id" : "4", 
+    "productId" : "5b556b36893c434268f39f61", 
+    "product" : "2"
+}
+{ 
+    "_id" : ObjectId("5b55ae29893c434268f3a01e"), 
+    "id" : "5", 
+    "name" : "iqos一代", 
+    "productId" : "5b556b2d893c434268f39f60", 
+    "product" : "1"
+}
+{ 
+    "_id" : ObjectId("5b55ae69893c434268f3a023"), 
+    "id" : "6", 
+    "name" : "iqos二代", 
+    "productId" : "5b556b2d893c434268f39f60", 
+    "product" : "1"
+}
+{ 
+    "_id" : ObjectId("5b55ae97893c434268f3a024"), 
+    "id" : "7", 
+    "name" : "lil一代", 
+    "productId" : "5b556b2d893c434268f39f60", 
+    "product" : "1"
+}
+{ 
+    "_id" : ObjectId("5b55aea1893c434268f3a025"), 
+    "id" : "8", 
+    "name" : "lil二代", 
+    "productId" : "5b556b2d893c434268f39f60", 
+    "product" : "1"
+}
