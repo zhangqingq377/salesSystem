@@ -53,13 +53,10 @@ async function findIdAndUpdate(record, type) {
     } else {
       //单价 = 库存总价 + 这次入库的差额 / 库存
       let price = (detail.cost || 0) * stock; //总价
-      console.log(price);
       price = price + (Number(record.curCount) * Number(record.curPrice) - Number(record.defaultCount) * Number(record.defaultPrice));
-      console.log(price);
       //库存 = 原库存 - 上次的入库数 + 这次的入库数 (修改)
       stock = stock - Number(record.defaultCount) + Number(record.curCount);
       price = price/stock;
-      console.log(price);
       //更新库存和单价
       ProductDetail.findByIdAndUpdate(record.id, {stock: stock, cost: price}).then(result => {
         // console.log('result: ' + result);
