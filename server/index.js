@@ -20,4 +20,4 @@ app.use('/api', router);
 
 // 监听端口
 app.listen(port);
-console.log('数据库连接成功，端口8088正在监听......');
+console.log('数据库连接成功，端口'+port+'正在监听......');
