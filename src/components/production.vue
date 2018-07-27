@@ -15,12 +15,12 @@
           label="类型">
         </el-table-column>
         <el-table-column
-          prop="cost"
-          label="成本">
-        </el-table-column>
-        <el-table-column
           prop="stock"
           label="库存">
+        </el-table-column>
+        <el-table-column
+          prop="cost"
+          label="单价">
         </el-table-column>
       </el-table>
     </template>

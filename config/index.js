@@ -9,7 +9,8 @@ module.exports = {
 
     // Paths
     assetsSubDirectory: 'static',
-    assetsPublicPath: './',
+    // assetsPublicPath: './', //打包上注释
+    assetsPublicPath: '/',
     proxyTable: {
       '/api': {
         target: 'http://localhost:8088/api/',

@@ -58,6 +58,7 @@ router.post('/stocks', function (req, res) {
  */
 router.post('/saveStocks', function (req, res) {
   let props = req.body.data;
+
   let list = props.list;
   delete props.list;
   if(props._id) {
@@ -71,10 +72,11 @@ router.post('/saveStocks', function (req, res) {
     for(let record of list) {
       if (record._id) updateList.push(record);
       else {
-        record.saleId = objid;
+        record.stockId = objid;
         insertList.push(record);
       }
     }
+
     Stocks.findByIdAndUpdate(objid, props).then(sale => {
       if (!sale)
         return res.send({
@@ -84,6 +86,52 @@ router.post('/saveStocks', function (req, res) {
       if(updateList.length > 0) {
         let promises = updateList.map((record) => {
           let recordId = record._id;
+          //如果修改了影响库存的数据
+          if(undefined !== record.productId || undefined !== record.count) {
+            Record.findById(recordId, function (err, result) {
+              if (undefined !== record.productId) {
+                //如果更新了产品
+                if (undefined !== record.count) {
+                  //同时更新了数量
+                  StocksDAO.updateStocks(2, [{
+                    id: record.productId,
+                    defaultCount: 0,
+                    curCount: record.count,
+                    defaultPrice: 0,
+                    curPrice: record.price
+                  }, {
+                    id: result.productId,
+                    defaultCount: result.count,
+                    curCount: 0,
+                    defaultPrice: result.price,
+                    curPrice: 0
+                  }]);
+                } else {
+                  StocksDAO.updateStocks(2, [{
+                    id: record.productId,
+                    defaultCount: 0,
+                    curCount: result.count,
+                    defaultPrice: 0,
+                    curPrice: result.price
+                  }, {
+                    id: result.productId,
+                    defaultCount: result.count,
+                    curCount: 0,
+                    defaultPrice: result.price,
+                    curPrice: 0
+                  }]);
+                }
+              } else if (undefined !== record.count) {
+                StocksDAO.updateStocks(2, [{
+                  id: result.productId,
+                  defaultCount: result.count,
+                  curCount: record.count,
+                  defaultPrice: result.price,
+                  curPrice: record.price
+                }]);
+              }
+            });
+          }
           delete record._id;
           return Record.findByIdAndUpdate(recordId, record);
         });
@@ -100,6 +148,19 @@ router.post('/saveStocks', function (req, res) {
                 message: '销售明细新增失败!'
               });
             StocksDAO.updateTotal(objid);
+            //更新库存
+            let oldRecord = [];
+            for(let record of newlist) {
+              oldRecord.push(
+                {
+                  id: record.productId,
+                  defaultCount: 0,
+                  curCount: record.count,
+                  defaultPrice: 0,
+                  curPrice: record.price
+                });
+            }
+            StocksDAO.updateStocks(2, oldRecord);
             res.send({
               code: 0,
               message: '保存成功'
@@ -132,10 +193,23 @@ router.post('/saveStocks', function (req, res) {
         total += record.count * record.price;
         return record.stockId = curStockId;
       });
-      Record.insertMany(list, function(err) {
+      Record.insertMany(list, function(err, records) {
         if(err) {
           console.log(err);
-        } else if(!msg.total){
+        } else {
+          // 更新库存和成本
+          let oldRecord = [];
+          for(let record of records) {
+            oldRecord.push(
+              {
+                id: record.productId,
+                defaultCount: 0,
+                curCount: record.count,
+                defaultPrice: 0,
+                curPrice: record.price
+              });
+          }
+          StocksDAO.updateStocks(2, oldRecord);
           //如果total值不存在,则添加
           Stocks.update({_id: curStockId}, {total: total}, function (err) {
             if(err)
@@ -161,28 +235,43 @@ router.post('/deleteStock', function (req, res) {
   let stockId = props.id;
   Stocks.findOne({_id: stockId}, function (err, result) {
     if(result) {
-      Record.deleteMany({stockId: result._id}, function (err) {
-        if(err) {
-          return res.send({
-            code: 1,
-            message: '进货记录中明细删除失败'
-          });
+      Record.find({stockId: result._id}, function (err, records) {
+        let oldRecord = [];
+        for(let record of records) {
+          oldRecord.push(
+            {
+              id: record.productId,
+              defaultCount: record.count,
+              curCount: 0,
+              defaultPrice: record.price,
+              curPrice: 0
+            });
         }
-
-        Stocks.deleteOne({_id: stockId}, function (err) {
+        StocksDAO.updateStocks(2, oldRecord);
+        Record.deleteMany({stockId: result._id}, function (err) {
           if(err) {
             return res.send({
               code: 1,
-              message: '进货记录删除失败'
+              message: '进货记录中明细删除失败'
             });
           }
-          return res.send({
-            code: 0,
-            message: 'success'
-          });
-        })
 
+          Stocks.deleteOne({_id: stockId}, function (err) {
+            if(err) {
+              return res.send({
+                code: 1,
+                message: '进货记录删除失败'
+              });
+            }
+            return res.send({
+              code: 0,
+              message: 'success'
+            });
+          })
+
+        })
       })
+
     } else {
       res.send({
         code: 1,

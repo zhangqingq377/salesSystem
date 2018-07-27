@@ -180,7 +180,7 @@ router.post('/saveSale', function (req, res) {
       SalesRecord.insertMany(list, function(err, records) {
         if(err) {
           console.log(err);
-        } else if(!msg.total){
+        } else{
           let oldRecord = [];
           for(let record of records) {
             oldRecord.push({id: record.productId, count: 0, curCount: record.count});

@@ -271,13 +271,16 @@
             }
           } else if(_self.form[key]) changequery[key] = _self.form[key];
         }
-        this.axios.post('/api/saveSale', {data: changequery}).then(res => {
+        let url = ''
+        if(_self.type === 'sales') url = '/api/saveSale';
+        else if(_self.type === 'stocks') url = '/api/saveStocks';
+        this.axios.post(url, {data: changequery}).then(res => {
           if(res.data.code === 0) {
             this.$message({
               type: 'success',
               message: res.data.message
             });
-            this.$router.push({path: '/sales'});
+            this.$router.push({path: '/' + _self.type});
           }else {
             this.$message({
               type: 'error',
