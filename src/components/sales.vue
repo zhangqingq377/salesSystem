@@ -31,42 +31,54 @@
       <el-pagination
         @current-change="handleCurrentChange"
         :current-page="page.page"
-        :page-sizes="[50]"
+        :page-sizes="[page.size]"
         :page-size="page.size"
         layout="total, sizes, prev, pager, next, jumper"
         :total="page.total">
       </el-pagination>
-      <div class="el-table el-table--fit el-table--border el-table--enable-row-hover el-table--enable-row-transition">
+      <div class="el-table el-table--fit el-table--border el-table--enable-row-hover el-table--enable-row-transition;table-layout:fixed;word-break:break-all;">
         <table class="el-table__body" style="width: 100%;border-spacing: 0;">
+          <col style="width: 5%" />
+          <col style="width: 7%"/>
+          <col style="width: 20%"/>
+          <col style="width: 5%" />
+          <col style="width: 7%"/>
+          <col style="width: 16%"/>
+          <col style="width: 5%"/>
+          <col style="width: 7%"/>
+          <col style="width: 7%"/>
+          <col style="width: 13%"/>
+          <col style="width: 8%"/>
+
           <tr class="el-table__row">
-            <th rowspan="2" width="80">姓名</th>
-            <th rowspan="2" width="140">电话号码</th>
+            <th rowspan="2">姓名</th>
+            <th rowspan="2">电话号码</th>
             <th rowspan="2">地址</th>
-            <th rowspan="2" width="80">交易平台</th>
-            <th rowspan="2" width="140">微信</th>
-            <th colspan="3" width="580">明细</th>
-            <th rowspan="2" width="140">总金额</th>
-            <th rowspan="2" width="200">日期</th>
-            <th rowspan="2" width="150">操作</th>
+            <th rowspan="2">交易平台</th>
+            <th rowspan="2">微信</th>
+            <th colspan="3">明细</th>
+            <th rowspan="2">总金额</th>
+            <th rowspan="2">日期</th>
+            <th rowspan="2">操作</th>
           </tr>
           <tr class="el-table__row">
             <th>商品</th>
-            <th width="80">数量</th>
-            <th width="100">单价</th>
+            <th>数量</th>
+            <th>单价</th>
           </tr>
 
           <template v-for="sale in salesList">
             <tr class="el-table__row">
-              <td :rowspan="sale.records.length > 0 ? sale.records.length : 1" width="80">{{sale.name}}</td>
-              <td :rowspan="sale.records.length ? sale.records.length : 1" width="140">{{sale.phone}}</td>
+              <td :rowspan="sale.records.length > 0 ? sale.records.length : 1">{{sale.name}}</td>
+              <td :rowspan="sale.records.length ? sale.records.length : 1">{{sale.phone}}</td>
               <td :rowspan="sale.records.length ? sale.records.length : 1">{{sale.address}}</td>
-              <td :rowspan="sale.records.length ? sale.records.length : 1" width="80">{{sale.platform}}</td>
-              <td :rowspan="sale.records.length ? sale.records.length : 1" width="140">{{sale.wechat}}</td>
+              <td :rowspan="sale.records.length ? sale.records.length : 1">{{sale.platform}}</td>
+              <td :rowspan="sale.records.length ? sale.records.length : 1">{{sale.wechat}}</td>
               <td>{{sale.records.length > 0 ? sale.records[0].productId.brandId.productId.name + ' : ' + sale.records[0].productId.brandId.name + ' - ' + sale.records[0].productId.name : ''}}</td>
               <td>{{sale.records.length > 0 ? sale.records[0].count : ''}}</td>
               <td>{{sale.records.length > 0 ? sale.records[0].price : ''}}</td>
-              <td :rowspan="sale.records.length ? sale.records.length : 1" width="140">{{sale.total}}</td>
-              <td :rowspan="sale.records.length ? sale.records.length : 1" width="140">{{sale.time}}</td>
+              <td :rowspan="sale.records.length ? sale.records.length : 1">{{sale.total}}</td>
+              <td :rowspan="sale.records.length ? sale.records.length : 1">{{sale.time}}</td>
               <td :rowspan="sale.records.length ? sale.records.length : 1">
                 <el-button
                   size="mini"
@@ -115,7 +127,8 @@ export default {
     this.obtainSaleList();
   },
   methods: {
-    handleCurrentChange() {
+    handleCurrentChange(val) {
+      this.page.page = val;
       this.obtainSaleList();
     },
     obtainSaleList() {

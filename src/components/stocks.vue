@@ -15,6 +15,14 @@
       </el-form>
     </div>
     <div class="search-result">
+      <el-pagination
+        @current-change="handleCurrentChange"
+        :current-page="page.page"
+        :page-sizes="[50]"
+        :page-size="page.size"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="page.total">
+      </el-pagination>
       <div class="el-table el-table--fit el-table--border el-table--enable-row-hover el-table--enable-row-transition">
         <table class="el-table__body" style="width: 100%;border-spacing: 0;">
           <tr class="el-table__row">
@@ -102,6 +110,10 @@ export default {
         }
 
       });
+    },
+    handleCurrentChange() {
+      this.page.page = val;
+      this.obtainStocksList();
     },
     handleEdit(stock){
       this.$router.push({path: '/update', query: {id: stock._id, type: 'stocks'}});
