@@ -15,11 +15,21 @@ router.get('/products', function (req, res) {
   });
 });
 
+router.get('/brandDetails', function (req, res) {
+  ProductBrand.get({}, function (err, brands) {
+    if(err) {
+      console.log(err);
+    } else {
+      res.send(brands);
+    }
+  })
+});
+
 router.post('/productDetails', function (req, res) {
-  let value = req.body.name;
+  let product = req.body.product;
   let query = {};
-  if(value) {
-    query.value = value;
+  if(product) {
+    query.value = product;
   }
   //判空
   Product.get(query, function (err, products) {
@@ -30,16 +40,42 @@ router.post('/productDetails', function (req, res) {
       for(let p of products) {
         query.push(p.id);
       }
-      ProductBrand.get({product:{$in: query}}, function (err, brands) {
+      let brandQuery = {
+        product: {$in: query}
+      };
+      let brandId = req.body.brandId;
+      if(brandId) {
+        brandQuery._id = brandId;
+      }
+      ProductBrand.get(brandQuery, function (err, brands) {
         query = [];
         for(let b of brands) {
           query.push({brand: b.id});
         }
-        ProductDetail.get({$or:query}, function (err, details) {
+        let productQuery = {
+          $or: query
+        };
+        let name = req.body.name;
+        if(name) {
+          productQuery.name = {$regex : new RegExp(name, 'i')};
+        }
+        ProductDetail.get(productQuery, function (err, details) {
           res.send(details);
         });
       });
     }
+  });
+});
+
+router.post('/saveProduct', function (req, res) {
+  let props = req.body.data;
+  let product = new ProductDetail(props);
+  product.save(function (err, msg) {
+    if (err) return console.log(err);
+    res.send({
+      code: 0,
+      message: '保存成功'
+    });
   });
 });
 

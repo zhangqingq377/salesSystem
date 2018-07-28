@@ -99,6 +99,30 @@
         <el-button type="primary" @click="saveSale">保存</el-button>
       </el-form-item>
     </el-form>
+    <el-form ref="form" :model="productForm" label-width="80px" v-if="type==='product'">
+      <el-form-item label="品牌">
+        <el-select v-model="productForm.brandId" placeholder="请选择品牌" @change="changeBrand">
+          <el-option
+            v-for="brand in brandList"
+            :label="brand.name"
+            :value="brand._id"
+          >
+          </el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item label="名称">
+        <el-input v-model="productForm.name"></el-input>
+      </el-form-item>
+      <el-form-item label="库存">
+        <el-input v-model="productForm.stock"></el-input>
+      </el-form-item>
+      <el-form-item label="单价">
+        <el-input v-model="productForm.cost"></el-input>
+      </el-form-item>
+      <el-form-item style="text-align: right">
+        <el-button type="primary" @click="saveProduct">保存</el-button>
+      </el-form-item>
+    </el-form>
   </div>
 </template>
 <script>
@@ -107,12 +131,17 @@
     components: {},
     created() {
       const _self = this;
-      _self.getProductList();
+      if(_self.type === 'product') {
+        _self.getBrandList();
+      }else {
+        _self.getProductList();
+      }
     },
     data() {
       return {
         type: this.$route.query.type,
         productList: [],
+        brandList: [],
         curRecord: {},
         form: {
           wechat: '', //微信
@@ -121,6 +150,13 @@
           address: '', //地址
           platform: '', //交易平台
           list: [],
+        },
+        productForm: {
+          brandId: '',
+          brand: '',
+          name: '',
+          stock: '',
+          cost: ''
         }
       }
     },
@@ -134,6 +170,19 @@
         this.axios.post('/api/productDetails', {}).then(res => {
           this.productList = res.data;
         })
+      },
+      getBrandList() {
+        this.axios.get('/api/brandDetails').then(res => {
+          this.brandList = res.data;
+        });
+      },
+      changeBrand(value) {
+        const _self = this;
+        for(let brand of _self.brandList) {
+          if(brand._id === value) {
+            _self.productForm.brand = brand.id;
+          }
+        }
       },
       querySearch(queryString, cb) {
         let productList = this.productList;
@@ -184,6 +233,17 @@
           });
         }
 
+      },
+      saveProduct() {
+        this.axios.post('/api/saveProduct', {data: this.productForm}).then(res => {
+          if(res.data.code === 0) {
+            this.$message({
+              type: 'success',
+              message: res.data.message
+            });
+            this.$router.push({path: '/production'});
+          }
+        });
       }
     }
   }
