@@ -92,8 +92,8 @@
     watch: {
       '$route.query': function(val){
         if(val.hasOwnProperty('source')){
-          this.formInline.product = val;
-          this.handleSelect(val);
+          this.formInline.product = val.source;
+          this.getProductionList();
         }
       },
     },
