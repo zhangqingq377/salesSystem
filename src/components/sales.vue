@@ -23,11 +23,19 @@
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="obtainSaleList">查询</el-button>
-          <el-button type="primary"><router-link to="/insert?type=sales">新增</router-link></el-button>
+          <router-link to="/insert?type=sales"><el-button type="primary">新增</el-button></router-link>
         </el-form-item>
       </el-form>
     </div>
     <div class="search-result">
+      <el-pagination
+        @current-change="handleCurrentChange"
+        :current-page="page.page"
+        :page-sizes="[50]"
+        :page-size="page.size"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="page.total">
+      </el-pagination>
       <div class="el-table el-table--fit el-table--border el-table--enable-row-hover el-table--enable-row-transition">
         <table class="el-table__body" style="width: 100%;border-spacing: 0;">
           <tr class="el-table__row">
@@ -91,6 +99,7 @@ export default {
       salesList: [],
       page: {
         size: 50,
+        total: 0,
         page: 1
       },
       formInline: {
@@ -106,6 +115,9 @@ export default {
     this.obtainSaleList();
   },
   methods: {
+    handleCurrentChange() {
+      this.obtainSaleList();
+    },
     obtainSaleList() {
       const _self = this;
       let data = {
@@ -122,7 +134,6 @@ export default {
             message: '获取销售记录失败'
           });
         }
-
       });
     },
     handleEdit(sale){

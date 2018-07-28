@@ -28,7 +28,7 @@
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="getProductionList">查询</el-button>
-          <el-button type="primary"><router-link to="/insert?type=production">新增</router-link></el-button>
+          <router-link to="/insert?type=production"><el-button type="primary">新增</el-button></router-link>
         </el-form-item>
       </el-form>
     </div>

@@ -10,7 +10,7 @@
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="obtainStocksList">查询</el-button>
-          <el-button type="primary"><router-link to="/insert?type=stocks">新增</router-link></el-button>
+          <router-link to="/insert?type=stocks"><el-button type="primary">新增</el-button></router-link>
         </el-form-item>
       </el-form>
     </div>
