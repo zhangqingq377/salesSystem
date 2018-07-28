@@ -105,6 +105,30 @@
         <el-button type="primary" @click="saveSale">保存</el-button>
       </el-form-item>
     </el-form>
+    <el-form ref="form" :model="form" label-width="80px" v-if="type==='production'">
+      <el-form-item label="品牌">
+        <el-select v-model="productForm.brandId" :placeholder="defaultProductForm.brandId" @change="changeBrand">
+          <el-option
+            v-for="brand in brandList"
+            :label="brand.name"
+            :value="brand._id"
+          >
+          </el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item label="名称">
+        <el-input v-model="productForm.name" :placeholder="defaultProductForm.name"></el-input>
+      </el-form-item>
+      <el-form-item label="库存">
+        <el-input v-model="productForm.stock" :placeholder="defaultProductForm.stock"></el-input>
+      </el-form-item>
+      <el-form-item label="单价">
+        <el-input v-model="productForm.cost" :placeholder="defaultProductForm.cost"></el-input>
+      </el-form-item>
+      <el-form-item style="text-align: right">
+        <el-button type="primary" @click="saveProduct">保存</el-button>
+      </el-form-item>
+    </el-form>
   </div>
 </template>
 <script>
@@ -116,8 +140,11 @@
       _self.getProductList();
       if(_self.type === 'sales') {
         _self.getSaleMessage();
-      } else {
+      } else if(_self.type === 'stocks') {
         _self.getStockMessage();
+      } else if(_self.type === 'production') {
+        _self.getProductMessage();
+        _self.getBrandList()
       }
 
     },
@@ -125,6 +152,7 @@
       return {
         type: this.$route.query.type,
         productList: [],
+        brandList: [],
         curRecord: {},
         form: {
           _id: '', //id值
@@ -145,6 +173,21 @@
           platform: '', //交易平台
           total: '',//总金额
           list: [],
+        },
+        productForm: {
+          brandId: '',
+          brand: '',
+          name: '',
+          stock: '',
+          cost: ''
+        },
+        defaultProductForm: {
+          _id: '',
+          brandId: '',
+          brand: '',
+          name: '',
+          stock: '',
+          cost: ''
         }
       }
     },
@@ -204,10 +247,34 @@
           }
         });
       },
+      getProductMessage() {
+        const _self = this;
+        _self.axios.post('/api/productMessage', {data: {id: _self.$route.query.id}}).then(res => {
+          if(res.data.code === 0) {
+            let result = res.data.data[0];
+            result.brandId = result.brandId.name;
+            _self.defaultProductForm = result;
+          }
+        });
+      },
+
+      changeBrand(value){
+        const _self = this;
+        for(let brand of _self.brandList) {
+          if(brand._id === value) {
+            _self.productForm.brand = brand.id;
+          }
+        }
+      },
       getProductList() {
         this.axios.post('/api/productDetails', {}).then(res => {
           this.productList = res.data;
         })
+      },
+      getBrandList() {
+        this.axios.get('/api/brandDetails').then(res => {
+          this.brandList = res.data;
+        });
       },
       querySearch(queryString, cb) {
         let productList = this.productList;
@@ -288,7 +355,31 @@
             });
           }
         });
-      }
+      },
+      saveProduct() {
+        const _self = this;
+        let changequery = {
+          _id: _self.defaultProductForm._id
+        };
+        for(let key in _self.productForm) {
+          if(_self.productForm[key]) changequery[key] = _self.productForm[key];
+        }
+
+        this.axios.post('/api/saveProduct', {data: changequery}).then(res => {
+          if(res.data.code === 0) {
+            this.$message({
+              type: 'success',
+              message: res.data.message
+            });
+            this.$router.push({path: '/' + _self.type});
+          }else {
+            this.$message({
+              type: 'error',
+              message: res.data.message
+            });
+          }
+        });
+      },
     }
   }
 </script>

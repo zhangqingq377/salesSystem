@@ -28,7 +28,7 @@
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="getProductionList">查询</el-button>
-          <el-button type="primary"><router-link to="/insert?type=product">新增</router-link></el-button>
+          <el-button type="primary"><router-link to="/insert?type=production">新增</router-link></el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -118,7 +118,7 @@
         });
       },
       handleEdit(item) {
-        this.$router.push({path: '/update', query: {id: item._id, type: 'product'}});
+        this.$router.push({path: '/update', query: {id: item._id, type: 'production'}});
       },
     }
   }

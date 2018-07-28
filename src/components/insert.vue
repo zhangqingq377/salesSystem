@@ -131,7 +131,7 @@
     components: {},
     created() {
       const _self = this;
-      if(_self.type === 'product') {
+      if(_self.type === 'production') {
         _self.getBrandList();
       }else {
         _self.getProductList();

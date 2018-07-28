@@ -25,6 +25,24 @@ router.get('/brandDetails', function (req, res) {
   })
 });
 
+router.post('/productMessage', function (req, res) {
+  let props = req.body.data;
+  ProductDetail.get({_id: props.id}, function (err, result) {
+    if(result) {
+      res.send({
+        code: 0,
+        data: result
+      });
+    } else {
+      res.send({
+        code: 1,
+        message: '未找到当前记录'
+      });
+    }
+  })
+
+});
+
 router.post('/productDetails', function (req, res) {
   let product = req.body.product;
   let query = {};
@@ -69,14 +87,27 @@ router.post('/productDetails', function (req, res) {
 
 router.post('/saveProduct', function (req, res) {
   let props = req.body.data;
-  let product = new ProductDetail(props);
-  product.save(function (err, msg) {
-    if (err) return console.log(err);
-    res.send({
-      code: 0,
-      message: '保存成功'
+  if(props._id) {
+    ProductDetail.findByIdAndUpdate(props._id, props).then(product => {
+      if(product) res.send({
+        code: 0,
+        message: '保存成功'
+      });
+      else res.send({
+        code: 1,
+        message: '保存失败'
+      });
     });
-  });
+  } else {
+    let product = new ProductDetail(props);
+    product.save(function (err, msg) {
+      if (err) return console.log(err);
+      res.send({
+        code: 0,
+        message: '保存成功'
+      });
+    });
+  }
 });
 
 
