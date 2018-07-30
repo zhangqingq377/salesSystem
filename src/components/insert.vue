@@ -99,7 +99,7 @@
         <el-button type="primary" @click="saveSale">保存</el-button>
       </el-form-item>
     </el-form>
-    <el-form ref="form" :model="productForm" label-width="80px" v-if="type==='product'">
+    <el-form ref="form" :model="productForm" label-width="80px" v-if="type==='production'">
       <el-form-item label="品牌">
         <el-select v-model="productForm.brandId" placeholder="请选择品牌" @change="changeBrand">
           <el-option
