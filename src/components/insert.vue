@@ -35,6 +35,7 @@
                 placeholder="请输入内容"
                 @focus="autoCompletefocus(record)"
                 @select="handleSelect"
+                style="width: 300px"
               >
                 <template slot-scope="{ item }">
                   {{ item.brandId.productId.name }} : {{ item.brandId.name }} - {{ item.name }}

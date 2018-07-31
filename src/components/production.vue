@@ -5,6 +5,7 @@
       <el-form :inline="true" :model="formInline" class="demo-form-inline">
         <el-form-item label="产品">
           <el-select v-model="formInline.product" placeholder="请选择产品" @change="getProductionList">
+            <el-option label="" value=""></el-option>
             <el-option
               v-for="p in productList"
               :label="p.name"
