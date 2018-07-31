@@ -120,6 +120,9 @@
       <el-form-item label="单价">
         <el-input v-model="productForm.cost"></el-input>
       </el-form-item>
+      <el-form-item label="显示顺序">
+        <el-input v-model="productForm.order"></el-input>
+      </el-form-item>
       <el-form-item style="text-align: right">
         <el-button type="primary" @click="saveProduct">保存</el-button>
       </el-form-item>

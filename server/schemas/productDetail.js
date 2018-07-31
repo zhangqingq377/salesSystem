@@ -7,12 +7,13 @@ const productDetailSchema = new mongoose.Schema({
   cost: Number, //成本
   stock: Number, //库存
   brand: String,
-  brandId: {type: mongoose.Schema.Types.ObjectId, ref: 'productBrand'}
+  brandId: {type: mongoose.Schema.Types.ObjectId, ref: 'productBrand'},
+  order: Number //显示顺序
 });
 
 productDetailSchema.statics = {
   get: function (query, cb) {
-    return this.find(query, null, {limit: 50, sort: {id: 1}})
+    return this.find(query, null, {limit: 50, sort: {order: 1}})
       .populate({
         path: 'brandId',
         select: '_id name',
