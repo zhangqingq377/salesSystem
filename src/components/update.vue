@@ -112,6 +112,7 @@
             v-for="brand in brandList"
             :label="brand.name"
             :value="brand._id"
+            :key="brand._id"
           >
           </el-option>
         </el-select>

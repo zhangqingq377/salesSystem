@@ -14,4 +14,7 @@
 </script>
 <style lang="less">
   @import 'assets/css/index.less';
+  #app{
+    height: 100%;
+  }
 </style>

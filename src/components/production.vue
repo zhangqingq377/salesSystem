@@ -4,11 +4,12 @@
     <div class="search-query">
       <el-form :inline="true" :model="formInline" class="demo-form-inline">
         <el-form-item label="产品">
-          <el-select v-model="formInline.product" placeholder="请选择产品">
+          <el-select v-model="formInline.product" placeholder="请选择产品" @change="getProductionList">
             <el-option
               v-for="p in productList"
               :label="p.name"
               :value="p.value"
+              :key="p._id"
             >
             </el-option>
           </el-select>
@@ -19,6 +20,7 @@
               v-for="brand in brandList"
               :label="brand.name"
               :value="brand._id"
+              :key="brand._id"
             >
             </el-option>
           </el-select>
@@ -36,6 +38,9 @@
       <el-table
         :data="details"
         border
+        :summary-method="getSummaries"
+        show-summary
+        height="100%"
         style="width: 100%">
         <el-table-column
           prop="brandId.name"
@@ -120,6 +125,43 @@
       handleEdit(item) {
         this.$router.push({path: '/update', query: {id: item._id, type: 'production'}});
       },
+      getSummaries(param) {
+        const { columns, data } = param;
+        const sums = [];
+        columns.forEach((column, index) => {
+          if (index === 0) {
+            sums[index] = '总计';
+            return;
+          }
+          const values = data.map(item => Number(item[column.property]));
+          if (!values.every(value => isNaN(value))) {
+            if(column.property === 'stock') {
+              sums[index] = values.reduce((prev, curr) => {
+                const value = Number(curr);
+                if (!isNaN(value)) {
+                  return prev + curr;
+                } else {
+                  return prev;
+                }
+              }, 0);
+              sums[index] += ' 件';
+            } else if(column.property === 'cost') {
+              let total = 0;
+              for(let item of data) {
+                total += (item.stock || 0) * (item.cost || 0)
+              }
+              sums[index] = total + ' 元';
+            } else {
+              sums[index] = '';
+            }
+
+          } else {
+            sums[index] = '';
+          }
+        });
+
+        return sums;
+      }
     }
   }
 </script>
@@ -127,5 +169,6 @@
 <style lang="less">
   .production {
     margin: 0 20px 20px;
+    height: calc(~"100% - 161px");
   }
 </style>
