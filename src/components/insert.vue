@@ -211,7 +211,7 @@
         this.form.list.unshift({
           product: '',
           productId: '',
-          count: '',
+          count: '1',
           price: ''
         })
       },

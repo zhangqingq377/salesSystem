@@ -117,14 +117,10 @@ router.post('/saveSale', function (req, res) {
                   curCount: record.count
                 }]);
               }
-
-              delete record._id;
-              return SalesRecord.findByIdAndUpdate(recordId, record);
             });
-          }else {
-            delete record._id;
-            return SalesRecord.findByIdAndUpdate(recordId, record);
           }
+          delete record._id;
+          return SalesRecord.findByIdAndUpdate(recordId, record);
         });
         return Promise.all(promises);
       }
